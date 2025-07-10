@@ -6,7 +6,8 @@ export interface Product {
   price: number;
 }
 async function getProducts(): Promise<{ products: Product[] }> {
-  const res = await fetch('http://localhost:3000/api/products', {
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const res = await fetch(`${baseUrl}/api/products`, {
     next: { revalidate: 60 }
   });
 
