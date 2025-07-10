@@ -1,6 +1,7 @@
 "use client"; // Marca este como um Client Component
 
 import { useState } from 'react';
+import { FaShoppingCart } from 'react-icons/fa';
 
 export default function AddToCartButton({ productId }: { productId: number }) {
   const [isAdded, setIsAdded] = useState(false);
@@ -15,9 +16,9 @@ export default function AddToCartButton({ productId }: { productId: number }) {
     <button 
       onClick={handleAddToCart}
       disabled={isAdded}
-      className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded disabled:bg-gray-400"
+      className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded disabled:bg-gray-400"
     >
-      {isAdded ? 'Adicionado!' : 'Adicionar ao Carrinho'}
+      <FaShoppingCart />{isAdded ? 'Adicionado!' : 'Adicionar ao Carrinho'}
     </button>
   );
 }
