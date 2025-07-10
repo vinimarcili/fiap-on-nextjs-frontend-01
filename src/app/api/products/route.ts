@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { products } from '@/lib/data';
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 export async function GET(request: Request) {
   return NextResponse.json(products);
 }

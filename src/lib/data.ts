@@ -4,7 +4,7 @@ export interface Product {
   price: number;
 }
 
-// Simulando um banco de dados em memória
+/* eslint-disable prefer-const */
 export let products: Product[] = [
   { id: 1, title: 'Smartphone X', price: 2999.99 },
   { id: 2, title: 'Notebook Pro', price: 7499.00 },
