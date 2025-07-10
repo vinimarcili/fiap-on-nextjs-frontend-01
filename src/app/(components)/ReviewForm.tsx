@@ -1,9 +1,8 @@
 "use client";
 
-import { useFormState } from "react-dom";
 import { submitReview, FormState } from "../actions";
 import { SubmitButton } from "./SubmitButton";
-import { useEffect, useRef } from "react";
+import { useActionState, useEffect, useRef } from "react";
 
 const initialState: FormState = {
   message: "",
@@ -11,7 +10,7 @@ const initialState: FormState = {
 };
 
 export function ReviewForm() {
-  const [state, formAction] = useFormState(submitReview, initialState);
+  const [state, formAction] = useActionState(submitReview, initialState);
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
