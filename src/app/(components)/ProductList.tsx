@@ -6,14 +6,17 @@ export interface Product {
   price: number;
 }
 async function getProducts(): Promise<{ products: Product[] }> {
-  // Simula uma busca de dados lenta
-  await new Promise(resolve => setTimeout(resolve, 1000));
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const res = await fetch(`${baseUrl}/api/products`, {
+    next: { revalidate: 60 }
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch products');
+  }
+
   return {
-    products: [
-      { id: 1, title: "Produto A", price: 29.99 },
-      { id: 2, title: "Produto B", price: 49.99 },
-      { id: 3, title: "Produto C", price: 19.99 },
-    ]
+    products: await res.json(),
   };
 }
 
