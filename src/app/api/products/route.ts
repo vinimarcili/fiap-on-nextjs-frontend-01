@@ -8,7 +8,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   const newProductData = await request.json();
 
-  if (!newProductData.name || !newProductData.price || !newProductData.imageUrl) {
+  if (!newProductData.title || !newProductData.price) {
     return NextResponse.json({ error: 'Dados incompletos' }, { status: 400 });
   }
 
