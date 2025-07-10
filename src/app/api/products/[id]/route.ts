@@ -6,8 +6,9 @@ interface Params {
 }
 
 // GET para um produto específico
-export async function GET(request: Request, context: { params: Params }) {
-  const id = parseInt(context.params.id, 10);
+export async function GET(request: Request, context: { params: Promise<Params> }) {
+  const params = await context.params;
+  const id = parseInt(params.id, 10);
   const product = products.find(p => p.id === id);
 
   if (product) {
@@ -18,8 +19,9 @@ export async function GET(request: Request, context: { params: Params }) {
 }
 
 // PUT para atualizar um produto
-export async function PUT(request: Request, context: { params: Params }) {
-  const id = parseInt(context.params.id, 10);
+export async function PUT(request: Request, context: { params: Promise<Params> }) {
+  const params = await context.params;
+  const id = parseInt(params.id, 10);
   const index = products.findIndex(p => p.id === id);
 
   if (index === -1) {
@@ -33,8 +35,9 @@ export async function PUT(request: Request, context: { params: Params }) {
 }
 
 // DELETE para remover um produto
-export async function DELETE(request: Request, context: { params: Params }) {
-  const id = parseInt(context.params.id, 10);
+export async function DELETE(request: Request, context: { params: Promise<Params> }) {
+  const params = await context.params;
+  const id = parseInt(params.id, 10);
   const index = products.findIndex(p => p.id === id);
 
   if (index === -1) {
